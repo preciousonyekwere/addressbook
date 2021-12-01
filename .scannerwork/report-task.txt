@@ -1,0 +1,6 @@
+projectKey=addressbook
+serverUrl=http://34.130.180.15:9000
+serverVersion=9.1.0.47736
+dashboardUrl=http://34.130.180.15:9000/dashboard?id=addressbook
+ceTaskId=AX14Afo5Ft-kMTdno3Ke
+ceTaskUrl=http://34.130.180.15:9000/api/ce/task?id=AX14Afo5Ft-kMTdno3Ke

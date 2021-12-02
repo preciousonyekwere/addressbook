@@ -1,0 +1,42 @@
+pipeline {
+    agent {
+  label 'node1'
+}
+stages {
+stage('compilation') {
+  steps {
+    sh 'mvn -B compile'
+  }
+}
+stage('static-code-analysis') {
+  steps {
+   sh '/home/ubuntu/sonar-scanner-4.6.2.2472-linux/bin/sonar-scanner'
+  }
+}
+stage('package') {
+  steps {
+    sh 'mvn package'
+  }
+}
+    stage('deploy') {
+  steps {
+      sh 'cp /tmp/jenkins-data/workspace/pipeline/target/addressbook-2.0.war /var/lib/tomcat9/webapps/addressbook'
+  }
+}
+}  
+
+post {
+  always {
+    // One or more steps need to be included within each condition's block.
+    sh 'build was performed'
+  }
+  success {
+    // One or more steps need to be included within each condition's block.
+    sh 'echo build is successfull, congratulations precious baby'
+  }
+  failure {
+    // One or more steps need to be included within each condition's block.
+    sh 'echo build failure, fix me NOW, or get fired'
+  }
+}
+}

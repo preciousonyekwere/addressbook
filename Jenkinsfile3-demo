@@ -20,7 +20,7 @@ stage('package') {
 }
     stage('deploy') {
   steps {
-      sh 'cp /tmp/jenkins-data/workspace/pipeline learning/target/addressbook-2.0.war /var/lib/tomcat9/webapps/addressbook'
+      sh 'cp /tmp/jenkins-data/workspace/pipeline learning/target/addressbook-2.0.war /var/lib/tomcat9/webapps/addressbook.war'
   }
 }
 }  

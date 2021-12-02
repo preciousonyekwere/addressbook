@@ -1,0 +1,44 @@
+pipeline {
+    agent {
+  label 'node2'
+}
+stages {
+    stage('compilation') {
+    steps {
+        sh 'mvn compile'
+    }
+}
+  stage('static-code-analysis') {
+      steps {
+          sh '/home/ubuntu/sonar-scanner-4.6.2.2472-linux/bin/sonar-scanner'
+      }
+  } 
+  stage('package') {
+      steps {
+          sh 'mvn package'
+      }
+  }
+stage('deploy') {
+ steps {
+     sh 'cp '
+ }
+}
+  stage('send email') {
+  steps {
+    mail bcc: '', body: 'the build is finished', cc: '', from: '', replyTo: '', subject: 'this is the build email', to: 'precilizy23@yahoo.com'
+  }
+}
+}
+  post {
+  always {
+    sh 'echo the build as completed'
+  }
+  success {
+    sh 'echo the build is SUCCESSFUL'
+  }
+  failure {
+    sh 'echo the build FAILED'
+  }
+}
+
+}

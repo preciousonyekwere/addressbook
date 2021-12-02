@@ -23,11 +23,6 @@ stage('deploy') {
      sh 'cp /tmp/jenkins-data/workspace/pipeline/target/addressbook-2.0.war /var/lib/tomcat9/webapps/addressbook.war'
  }
 }
-  stage('send email') {
-  steps {
-    mail bcc: '', body: 'the build is finished', cc: '', from: '', replyTo: '', subject: 'this is the build email', to: 'precilizy23@yahoo.com'
-  }
-}
 }
   post {
   always {

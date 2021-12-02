@@ -20,7 +20,7 @@ stages {
   }
 stage('deploy') {
  steps {
-     sh 'cp /tmp/jenkins-data/workspace/pipeline/target/addressbook-2.0 /var/lib/tomcat9/webapps/addressbook.war'
+     sh 'cp /tmp/jenkins-data/workspace/pipeline/target/addressbook-2.0.war /var/lib/tomcat9/webapps/addressbook.war'
  }
 }
   stage('send email') {

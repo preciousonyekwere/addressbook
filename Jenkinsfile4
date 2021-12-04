@@ -14,9 +14,11 @@ pipeline {
     sh 'mvn package'
   }
 }
-     node {
+ stage ('scanning') {
+ node {
   stage('SCM') {
     git 'https://github.com/preciousonyekwere/addressbook.git'
+  }
   }
   stage('SonarQube analysis') {
     def scannerHome = tool 'SonarScanner 4.0';

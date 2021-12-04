@@ -11,13 +11,13 @@ pipeline {
    stage('packaging') {
   steps {
     // One or more steps need to be included within the steps block.
-    sh 'mvn package'
+    sh 'mvn clean package'
   }
 }
 stage('SonarQube analysis') {
 steps {
     withSonarQubeEnv(credentialsId: 'SonarQube-key', installationName: 'SonarQube')
-    sh 'mvn sonar:sonar'
+    sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar'
     }
   }
 

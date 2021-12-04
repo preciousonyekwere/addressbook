@@ -17,7 +17,7 @@ pipeline {
 stage('SonarQube analysis') {
 steps {
     withSonarQubeEnv(credentialsId: 'SonarQube-key', installationName: 'SonarQube')
-    // some block
+    sh 'mvn clean package sonar:sonar'
     }
   }
 

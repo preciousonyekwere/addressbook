@@ -16,7 +16,9 @@ pipeline {
 }
 stage('SonarQube analysis') {
 steps {
+    def mvnHome=tool name:'M2_HOME', type: 'maven'
     withSonarQubeEnv(credentialsId: '074d59409968ec7d720b00bd8fc6f2636b067910', installationName: 'SonarQube-key') 
+    withMaven(maven:'M2_HOME')
     // You can override the credential to be used
       sh 'mvn sonar:sonar'
     }

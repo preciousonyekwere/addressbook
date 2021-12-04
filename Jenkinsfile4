@@ -16,7 +16,7 @@ pipeline {
 }
 stage('SonarQube analysis') {
 steps {
-    withSonarQubeEnv(credentialsId: 'SonarQube-key') 
+    withSonarQubeEnv(credentialsId: 'SonarQube-key' installationName: 'My SonarQube Server')
     // some block
     }
   }

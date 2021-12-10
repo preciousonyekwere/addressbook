@@ -26,7 +26,7 @@ stage('mvn package') {
 stage('mail') {
   steps {
     // One or more steps need to be included within the steps block.
-sh 'mail bcc: '', body: 'this is the end result. take care', cc: 'aaronboudreau@gmail.com', from: '', replyTo: '', subject: 'building result', to: 'precilizy23@yahoo.com''
+    sh 'mail bcc: '', body: 'building now as requested', cc: '', from: '', replyTo: '', subject: 'building now', to: 'precilizy23@yahoo.com''
   }
 }
 }

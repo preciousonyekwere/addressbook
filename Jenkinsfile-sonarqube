@@ -30,10 +30,10 @@ stage('mvn package') {
        //  }
   stage('QA deploy'){
 steps{
-deploy adapters: [tomcat8(credentialsId: 'deploy-key', path: '', url: 'http://172.31.18.207:8080')], contextPath: null, war: '**/*.war'
+deploy adapters: [tomcat9(credentialsId: 'deploy-key', path: '', url: 'http://172.31.18.207:8080')], contextPath: null, war: '**/*.war'
             } 
         }
-stage('mail') {
+// stage('mail') {
   steps {
     // One or more steps need to be included within the steps block.
     mail bcc: '', body: 'echo building now as requested', cc: '', from: '', replyTo: '', subject: 'building now', to: 'precilizy23@yahoo.com'

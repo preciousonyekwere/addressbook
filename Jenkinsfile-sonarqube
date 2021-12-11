@@ -33,9 +33,6 @@ steps{
 deploy adapters: [tomcat8(credentialsId: 'presh-deploy', path: '', url: 'http://172.31.10.101:8080')], contextPath: testapps, war: '**/*.war'
             } 
         }
-}
-
-
 stage('mail') {
   steps {
     // One or more steps need to be included within the steps block.
@@ -56,9 +53,5 @@ post {
     // One or more steps need to be included within each condition's block.
     sh 'echo ouch!! try again bitches'
   }
-}
-
-    
-    
-    
+}  
 }

@@ -22,6 +22,12 @@ stage('mvn package') {
     sh 'mvn package'
   }
 }
+stage('deploy') {
+  steps {
+    // One or more steps need to be included within the steps block.
+    sh 'cp /tmp/jenkins-data/workspace/pipeline-as-code/target/addressbook-2.0.war /var/lib/tomcat9/webapps/addressbook'
+  }
+}
 stage('ContinuesDeployment'){
 steps{
 deploy adapters: [tomcat8(credentialsId: 'presh-deploy', path: '', url: 'http://172.31.10.101:8080')], contextPath: null, war: '**/*.war'

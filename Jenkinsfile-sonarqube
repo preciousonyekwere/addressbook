@@ -41,7 +41,7 @@ deploy adapters: [tomcat9(credentialsId: 'deploy-key', path: '', url: 'http://17
  }
  stage('continuesTesting'){
             steps{
-                git branch: 'main', credentialsId: 'GitHUbPWD', url: 'https://github.com/Technicalcourses2021/sampleMavenJunit.git'
+                git branch: 'main', credentialsId: 'github-webhook', url: 'https://github.com/Technicalcourses2021/sampleMavenJunit.git'
                 sh 'mvn clean install'
             }   
         } 

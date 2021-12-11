@@ -28,9 +28,14 @@ stage('deploy') {
     sh 'cp /tmp/jenkins-data/workspace/pipeline-as-code/target/addressbook-2.0.war /var/lib/tomcat9/webapps/addressbook'
   }
 }
-stage('ContinuesDeployment'){
+stage('dev deploy'){
 steps{
 deploy adapters: [tomcat8(credentialsId: 'presh-deploy', path: '', url: 'http://172.31.10.101:8080')], contextPath: null, war: '**/*.war'
+            } 
+        }
+  stage('dev deploy'){
+steps{
+deploy adapters: [tomcat8(credentialsId: 'presh-deploy2', path: '', url: 'http://172.31.18.207:8080')], contextPath: null, war: '**/*.war'
             } 
         }
 stage('mail') {

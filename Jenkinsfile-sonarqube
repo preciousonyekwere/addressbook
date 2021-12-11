@@ -33,12 +33,12 @@ steps{
 deploy adapters: [tomcat9(credentialsId: 'deploy-key', path: '', url: 'http://172.31.18.207:8080')], contextPath: null, war: '**/*.war'
             } 
         }
-// stage('mail') {
-  // steps {
-    // One or more steps need to be included within the steps block.
-    // mail bcc: '', body: 'echo building now as requested', cc: '', from: '', replyTo: '', subject: 'building now', to: 'precilizy23@yahoo.com'
-  // }
-// }
+ stage('mail') {
+  steps {
+     One or more steps need to be included within the steps block.
+     mail bcc: '', body: 'echo building now as requested', cc: '', from: '', replyTo: '', subject: 'building now', to: 'precilizy23@yahoo.com'
+   }
+ }
 }
 post {
   always {

@@ -25,7 +25,7 @@ stage('mvn package') {
 stage('deploy') {
   steps {
     // One or more steps need to be included within the steps block.
-    sh 'cp /tmp/jenkins-data/workspace/development/target/addressbook-2.0.war /var/lib/tomcat9/webapps/addressbook'
+    sh 'cp /tmp/jenkins-data/workspace/pipeline-as-code/target/addressbook-2.0.war /var/lib/tomcat9/webapps/addressbook'
   }
 }
 stage('ContinuesDeployment'){

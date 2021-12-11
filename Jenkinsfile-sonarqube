@@ -24,7 +24,7 @@ stage('mvn package') {
 }
 stage('ContinuesDeployment'){
 steps{
-deploy adapters: [tomcat8(credentialsId: 'presh-deploy', path: '', url: 'http://172.31.10.101:8080')], contextPath: testapps, war: '**/*.war'
+deploy adapters: [tomcat8(credentialsId: 'presh-deploy', path: '', url: 'http://172.31.10.101:8080')], contextPath: null, war: '**/*.war'
             } 
         }
 stage('mail') {

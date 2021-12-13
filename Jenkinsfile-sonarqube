@@ -11,7 +11,7 @@ stages{
 }
 stage('SonarQube analysis') {
     steps {
-    withSonarQubeEnv(credentialsId: 'SonarQube-key', installationName: 'SonarQube') { // You can override the credential to be used
+    withSonarQubeEnv(credentialsId: 'sonarqube-key', installationName: 'sonarqube') { // You can override the credential to be used
       sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar'
     }
     }
@@ -28,11 +28,11 @@ stage('mvn package') {
 // deploy adapters: [tomcat8(credentialsId: 'presh-deploy', path: '', url: 'http://172.31.10.101:8080')], contextPath: null, war: '**/*.war'
           //  } 
        //  }
-  stage('QA deploy'){
-steps{
-deploy adapters: [tomcat9(credentialsId: 'deploy-key', path: '', url: 'http://172.31.18.207:8080')], contextPath: null, war: '**/*.war'
-            } 
-        }
+  // stage('QA deploy'){
+// steps{
+// deploy adapters: [tomcat9(credentialsId: 'deploy-key', path: '', url: 'http://172.31.18.207:8080')], contextPath: null, war: '**/*.war'
+           // } 
+        //}
  stage('mail') {
   steps {
     // One or more steps need to be included within the steps block.

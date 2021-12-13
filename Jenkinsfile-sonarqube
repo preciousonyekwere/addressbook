@@ -28,11 +28,11 @@ stage('mvn jenkins deploy') {
     sh 'cp /tmp/jenkins-data/workspace/addressbook/target/addressbook-2.0.war /var/lib/tomcat9/webapps/addressbook.war'
   }
 }
-// stage('dev deploy'){
-// steps{
-// deploy adapters: [tomcat8(credentialsId: 'presh-deploy', path: '', url: 'http://172.31.10.101:8080')], contextPath: null, war: '**/*.war'
-          //  } 
-       //  }
+stage('dev deploy'){
+ steps{
+ deploy adapters: [tomcat8(credentialsId: '-deploy', path: '', url: 'http://172.31.38.123:8080')], contextPath: null, war: '**/*.war'
+            } 
+         }
   // stage('QA deploy'){
 // steps{
 // deploy adapters: [tomcat9(credentialsId: 'deploy-key', path: '', url: 'http://172.31.18.207:8080')], contextPath: null, war: '**/*.war'

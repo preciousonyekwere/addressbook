@@ -80,6 +80,7 @@
                 <groupId>org.eclipse.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
                 <version>9.2.3.v20140905</version>
+                <argLine>-Xmx1024m -XX:MaxPermSize=256m</argLine>
             </plugin>
         </plugins>
     </build>

@@ -7,47 +7,61 @@ stages{
     sh 'mvn -B compile'
   }
 }
-stage('SonarQube analysis') {
-    steps {
-    withSonarQubeEnv(credentialsId: 'sonarqube-key', installationName: 'sonarqube') { // You can override the credential to be used
-      sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar'
-    }
-    }
-  }
+//stage('SonarQube analysis') {
+    //steps {
+    //withSonarQubeEnv(credentialsId: 'sonarqube-key', installationName: 'sonarqube') { // You can override the credential to be used
+      //sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar'
+   // }
+  //  }
+ // }
 stage('mvn package') {
   steps {
     // One or more steps need to be included within the steps block.
     sh 'mvn package'
   }
 }
-stage('mvn jenkins deploy') {
+stage ('docker build & publish'){
   steps {
-    // One or more steps need to be included within the steps block.
-    sh 'cp /tmp/jenkins-data/workspace/addressbook/target/addressbook-2.0.war /var/lib/tomcat9/webapps/addressbook.war'
+  sh 'sudo docker image build -t preciousonyekwere/addbook:${BUILD_NUMBER} .'
+  sh 'sudo docker login -u "preciousonyekwere" -p "Aaronkellyb123@" docker.io'
+  sh 'sudo docker push preciousonyekwere/addbook:${BUILD_NUMBER}'
+  
   }
 }
-stage('dev deploy'){
- steps{
- deploy adapters: [tomcat9(credentialsId: 'dev-deploy', path: '', url: 'http://172.31.38.123:8080')], contextPath: testapp, war: '**/*.war'
-            } 
-         }
+  stage ('docker container'){
+      steps {
+      sh 'sudo docker container rm -f mycontainer'
+      sh 'sudo docker container run --name mycontainer -d -p 2222:8080 -e ALLOW_EMPTY_PASSWORD=yes preciousonyekwere/myaddbook:${BUILD_NUMBER}'
+      }
+  }
+//stage('mvn jenkins deploy') {
+  //steps {
+    // One or more steps need to be included within the steps block.
+    //sh 'cp /tmp/jenkins-data/workspace/addressbook/target/addressbook-2.0.war /var/lib/tomcat9/webapps/addressbook.war'
+ // }
+//}
+//stage('dev deploy'){
+ //steps{
+ //deploy adapters: [tomcat9(credentialsId: 'dev-deploy', path: '', url: 'http://172.31.38.123:8080')], contextPath: testapp, war: '**/*.war'
+           // } 
+        // }
   // stage('QA deploy'){
 // steps{
 // deploy adapters: [tomcat9(credentialsId: 'deploy-key', path: '', url: 'http://172.31.18.207:8080')], contextPath: null, war: '**/*.war'
            // } 
         //}
- stage('mail') {
-  steps {
+ //stage('mail') {
+  //steps {
     // One or more steps need to be included within the steps block.
      mail bcc: '', body: 'echo building now as requested', cc: '', from: '', replyTo: '', subject: 'building now', to: 'precilizy23@yahoo.com'
-   }
- }
- stage('continuesTesting'){
-            steps{
-                git branch: 'main', credentialsId: 'github-webhook', url: 'https://github.com/Technicalcourses2021/sampleMavenJunit.git'
-                sh 'mvn clean install'
-            }   
-        } 
+   //}
+ //}
+ //stage('continuesTesting'){
+            //steps{
+               // git branch: 'main', credentialsId: 'github-webhook', url: 'https://github.com/Technicalcourses2021/sampleMavenJunit.git'
+                //sh 'mvn clean install'
+          //  }   
+        //} 
 }
 post {
   always {

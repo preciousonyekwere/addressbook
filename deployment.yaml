@@ -15,7 +15,7 @@ spec:
         app: addressbook
     spec:
       containers:
-      - image: preciousonyekwere/addressbooks:latest
+      - image: preciousonyekwere/addbook:latest
         name: addressbooks
         ports:
         - containerPort: 8080

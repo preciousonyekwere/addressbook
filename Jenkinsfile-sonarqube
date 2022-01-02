@@ -28,12 +28,12 @@ stage ('docker build & publish'){
   
   }
 }
- // stage ('docker container'){
-  //    steps {
-     // sh 'sudo docker container rm -f mycontainer'
-    //  sh 'sudo docker container run --name mycontainer -d -p 2222:8080 -e ALLOW_EMPTY_PASSWORD=yes preciousonyekwere/addbook:${BUILD_NUMBER}'
-      //}
-  //}
+  stage ('docker container'){
+    steps {
+      sh 'sudo docker container rm -f mycontainer'
+     sh 'sudo docker container run --name mycontainer -d -p 2222:8080 -e ALLOW_EMPTY_PASSWORD=yes preciousonyekwere/addbook:${BUILD_NUMBER}'
+      }
+  }
 stage('deploy-on-k8s') {
   agent { label "k8s" }
   steps {

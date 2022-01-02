@@ -4,18 +4,18 @@ metadata:
  labels:
   app: addressbook
  name: addressbook
- spec:
-  replicas: 3
-  selector:
-   matchLabels:
+spec:
+ replicas: 3
+ template:
+  metadata:
+   labels:
     app: addressbook
-  template:
-   metadata:
-    labels:
-     app: addressbook
-   spec:
-    containers:
-    - image: preciousonyekwere/addbook:latest
-      name: addressbooks
-      ports:
-      - containerPort: 8080
+  spec:
+   containers:
+   - image: preciousonyekwere/addbook:latest
+     name: addressbooks
+     ports:
+     - containerPort: 8080
+ selector:
+  matchLabels:
+   app: addressbook

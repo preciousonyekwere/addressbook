@@ -15,7 +15,7 @@ spec:
    - image: preciousonyekwere/addressbooks:latest
      name: addressbooks
      ports:
-     - containerPort: 8080
+     - containerPort: 6443
  selector:
   matchLabels:
    app: addressbook

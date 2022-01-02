@@ -22,9 +22,9 @@ stage('mvn package') {
 }
 stage ('docker build & publish'){
   steps {
-  sh 'sudo docker image build -t preciousonyekwere/addbook:latest .'
+  sh 'sudo docker image build -t preciousonyekwere/addressbooks:latest .'
   sh 'sudo docker login -u "preciousonyekwere" -p "Aaronkellyb123@" docker.io'
-  sh 'sudo docker push preciousonyekwere/addbook:latest'
+  sh 'sudo docker push preciousonyekwere/addressbooks:latest'
   
   }
 }

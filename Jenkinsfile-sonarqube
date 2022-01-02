@@ -35,7 +35,7 @@ stage ('docker build & publish'){
       //}
   //}
 stage('deploy-on-k8s') {
-  agent { label "kubernetes" }
+  agent { label "k8s" }
   steps {
     // One or more steps need to be included within the steps block.
     sh 'kubectl apply -f https://raw.githubusercontent.com/preciousonyekwere/addressbook/master/deployment.yaml'

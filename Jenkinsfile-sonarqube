@@ -34,8 +34,9 @@ stage ('docker build & publish'){
     //  sh 'sudo docker container run --name mycontainer -d -p 2222:8080 -e ALLOW_EMPTY_PASSWORD=yes preciousonyekwere/addbook:${BUILD_NUMBER}'
       //}
   //}
-//stage('mvn jenkins deploy') {
-  //steps {
+stage('deploy-on-k8s') {
+  agent { label "kubernetes" }
+  steps {
     // One or more steps need to be included within the steps block.
     //sh 'cp /tmp/jenkins-data/workspace/addressbook/target/addressbook-2.0.war /var/lib/tomcat9/webapps/addressbook.war'
  // }

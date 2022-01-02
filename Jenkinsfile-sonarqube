@@ -22,18 +22,18 @@ stage('mvn package') {
 }
 stage ('docker build & publish'){
   steps {
-  sh 'sudo docker image build -t preciousonyekwere/addbook:${BUILD_NUMBER} .'
+  sh 'sudo docker image build -t preciousonyekwere/addbook:latest .'
   sh 'sudo docker login -u "preciousonyekwere" -p "Aaronkellyb123@" docker.io'
-  sh 'sudo docker push preciousonyekwere/addbook:${BUILD_NUMBER}'
+  sh 'sudo docker push preciousonyekwere/addbook:latest'
   
   }
 }
-  stage ('docker container'){
-      steps {
-      sh 'sudo docker container rm -f mycontainer'
-      sh 'sudo docker container run --name mycontainer -d -p 2222:8080 -e ALLOW_EMPTY_PASSWORD=yes preciousonyekwere/addbook:${BUILD_NUMBER}'
-      }
-  }
+ // stage ('docker container'){
+  //    steps {
+     // sh 'sudo docker container rm -f mycontainer'
+    //  sh 'sudo docker container run --name mycontainer -d -p 2222:8080 -e ALLOW_EMPTY_PASSWORD=yes preciousonyekwere/addbook:${BUILD_NUMBER}'
+      //}
+  //}
 //stage('mvn jenkins deploy') {
   //steps {
     // One or more steps need to be included within the steps block.

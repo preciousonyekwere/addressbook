@@ -16,6 +16,9 @@ spec:
      name: addressbooks
      ports:
      - containerPort: 6443
+     env:
+     - name: ALLOW_EMPTY_PASSWORD
+       value: yes
  selector:
   matchLabels:
    app: addressbook
